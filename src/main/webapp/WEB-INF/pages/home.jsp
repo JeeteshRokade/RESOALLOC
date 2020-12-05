@@ -9,5 +9,8 @@
 </head>
 <body>
 <h2>RESOURCE ALLOCATION TOOL</h2>
+<form action="" method="post">
+<label>Name</label>
+</form>
 </body>
 </html>
