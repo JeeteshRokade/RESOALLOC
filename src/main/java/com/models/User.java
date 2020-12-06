@@ -15,7 +15,8 @@ public class User {
 	
 	private String role ;
 	
-	private Resource resource;
+	@OneToOne
+	private Resource resource;                        //test if it can be null
 	
 	public String getRole() {
 		return role;

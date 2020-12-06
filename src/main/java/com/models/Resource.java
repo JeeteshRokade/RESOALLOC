@@ -1,15 +1,18 @@
 package com.models;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Resource {
-	
+
 	@Id
 	private int resourceid;
-	
+
 	private ResourceDetails resourcedetails;
-	
+
+	@OneToOne
 	private User user;
 
 	public int getResourceid() {
@@ -40,7 +43,5 @@ public class Resource {
 	public String toString() {
 		return "Resource [resourceid=" + resourceid + ", resourcedetails=" + resourcedetails + ", user=" + user + "]";
 	}
-	
-	
 
 }

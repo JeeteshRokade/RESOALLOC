@@ -1,6 +1,6 @@
 package com.models;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class UserManager {
