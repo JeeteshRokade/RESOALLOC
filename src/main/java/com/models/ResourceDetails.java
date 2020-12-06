@@ -4,9 +4,9 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class ResourceDetails {
-	
+
 	private String resourcetype;
-	
+
 	private String resourcename;
 
 	public String getResourcetype() {
@@ -29,9 +29,5 @@ public class ResourceDetails {
 	public String toString() {
 		return "ResourceDetails [resourcetype=" + resourcetype + ", resourcename=" + resourcename + "]";
 	}
-	
-	
-	
-	
 
 }

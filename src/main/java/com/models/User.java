@@ -6,18 +6,18 @@ import javax.persistence.*;
 
 @Entity
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	private UserDetails ud ;
-	
-	private String role ;
-	
+
+	private UserDetails ud;
+
+	private String role;
+
 	@OneToOne
-	private Resource resource;                        //test if it can be null
-	
+	private Resource resource; // test if it can be null
+
 	public String getRole() {
 		return role;
 	}
@@ -54,10 +54,5 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", ud=" + ud + ", role=" + role + ", resource=" + resource + "]";
 	}
-
-	
-	
-	
-	
 
 }

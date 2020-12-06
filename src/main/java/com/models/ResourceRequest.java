@@ -4,19 +4,19 @@ import javax.persistence.*;
 
 @Entity
 public class ResourceRequest {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int requestid;
-	
+
 	private String requestreason;
-	
-	private String status;                  //New,Pending,Approved
-	
+
+	private String status; // New,Pending,Approved
+
 	private User user;
-	
+
 	private User approver;
-	
+
 	private Resource resource;
 
 	public int getRequestid() {
@@ -72,9 +72,5 @@ public class ResourceRequest {
 		return "ResourceRequest [requestid=" + requestid + ", requestreason=" + requestreason + ", status=" + status
 				+ ", user=" + user + ", approver=" + approver + ", resource=" + resource + "]";
 	}
-	
-	
-   	
-	
 
 }
