@@ -1,19 +1,21 @@
 package com.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class Resource {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int resourceid;
 
 	private ResourceDetails resourcedetails;
-
-	@OneToOne
-	private User user;
+    
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    private User useri;
 
 	public int getResourceid() {
 		return resourceid;
@@ -31,17 +33,20 @@ public class Resource {
 		this.resourcedetails = resourcedetails;
 	}
 
+	//@OneToOne
 	public User getUser() {
-		return user;
+		return useri;
 	}
 
 	public void setUser(User user) {
-		this.user = user;
+		this.useri = useri;
 	}
 
 	@Override
 	public String toString() {
-		return "Resource [resourceid=" + resourceid + ", resourcedetails=" + resourcedetails + ", user=" + user + "]";
+		return "Resource [resourceid=" + resourceid + ", resourcedetails=" + resourcedetails + ", useri=" + useri + "]";
 	}
+	
+	
 
 }

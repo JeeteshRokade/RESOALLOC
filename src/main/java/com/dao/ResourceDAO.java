@@ -61,13 +61,14 @@ public class ResourceDAO implements ResourceInt {
 	}
 
 	@Override
-	public void addResource(ResourceDetails rd, User user) {
+	public Resource addResource(ResourceDetails rd, User user) 
+	{
 		Transaction tx = null;
 
 		Resource resource = new Resource();
 		resource.setResourcedetails(rd);
-
 		resource.setUser(user);
+		
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
@@ -81,6 +82,8 @@ public class ResourceDAO implements ResourceInt {
 				tx.rollback();
 			}
 		}
+
+		return resource;
 
 	}
 

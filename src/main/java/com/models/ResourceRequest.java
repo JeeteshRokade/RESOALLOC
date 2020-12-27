@@ -1,6 +1,10 @@
 package com.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ResourceRequest {
@@ -13,10 +17,12 @@ public class ResourceRequest {
 
 	private String status; // New,Pending,Approved
 
-	private User user;
 
-	private User approver;
+	private String user;
 
+	private String approver;
+
+	@OneToOne
 	private Resource resource;
 
 	public int getRequestid() {
@@ -35,6 +41,9 @@ public class ResourceRequest {
 		this.requestreason = requestreason;
 	}
 
+	
+
+
 	public String getStatus() {
 		return status;
 	}
@@ -43,19 +52,19 @@ public class ResourceRequest {
 		this.status = status;
 	}
 
-	public User getUser() {
+	public String getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(String user) {
 		this.user = user;
 	}
 
-	public User getApprover() {
+	public String getApprover() {
 		return approver;
 	}
 
-	public void setApprover(User approver) {
+	public void setApprover(String approver) {
 		this.approver = approver;
 	}
 
@@ -72,5 +81,7 @@ public class ResourceRequest {
 		return "ResourceRequest [requestid=" + requestid + ", requestreason=" + requestreason + ", status=" + status
 				+ ", user=" + user + ", approver=" + approver + ", resource=" + resource + "]";
 	}
+
+	
 
 }

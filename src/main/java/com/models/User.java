@@ -1,45 +1,38 @@
 package com.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.NotFound;
+
 
 @Entity
 public class User {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-
+	
+	
+    @Id
+	private String userid;
+	
+    @Column
 	private UserDetails ud;
-
+	
+    @Column
 	private String role;
+    
+    @OneToOne(mappedBy = "useri",fetch = FetchType.EAGER)
+    @NotFound
+    private Resource res;
 
-	@OneToOne
-	private Resource resource; // test if it can be null
-
-	public String getRole() {
-		return role;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public Resource getResource() {
-		return resource;
-	}
-
-	public void setResource(Resource resource) {
-		this.resource = resource;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public UserDetails getUd() {
@@ -50,9 +43,29 @@ public class User {
 		this.ud = ud;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", ud=" + ud + ", role=" + role + ", resource=" + resource + "]";
+	public String getRole() {
+		return role;
 	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Resource getRes() {
+		return res;
+	}
+
+	public void setRes(Resource res) {
+		this.res = res;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", ud=" + ud + ", role=" + role + ", res=" + res + "]";
+	}
+	
+	
+	
+	
+	
 }

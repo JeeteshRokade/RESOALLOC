@@ -4,6 +4,6 @@ import com.models.ResourceDetails;
 
 public interface ResourceDetailsInt {
 
-	public abstract ResourceDetails addUserDetails(String resourcetype, String resourcename);
+	public abstract ResourceDetails addResourceDetails(String resourcetype, String resourcename);
 
 }

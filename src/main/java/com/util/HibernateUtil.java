@@ -6,36 +6,36 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class HibernateUtil {
-
-	private static SessionFactory sessionfactory = buildSessionFactory();
-
-	public static SessionFactory buildSessionFactory() {
-		try {
-			if (sessionfactory == null) {
-
-				StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate-cfg.xml")
-						.build();
-
-				Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
-
-				sessionfactory = metadata.getSessionFactoryBuilder().build();
-
-			}
-			return sessionfactory;
-		} catch (Throwable ex) {
-			throw new ExceptionInInitializerError(ex);
-		}
-
-	}
-
-	public static SessionFactory getSessionFactory() {
-
-		return sessionfactory;
-	}
-
-	public void shutdown() {
-		sessionfactory.close();
-	}
-
+public class HibernateUtil 
+{
+   private static SessionFactory sessionFactory = buildSessionFactory();
+ 
+   private static SessionFactory buildSessionFactory() 
+   {
+      try
+      {
+         if (sessionFactory == null) 
+         {
+            StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
+                  .configure("hibernate-cfg.xml").build();
+             
+            Metadata metaData = new MetadataSources(standardRegistry)
+                  .getMetadataBuilder()
+                  .build();
+             
+            sessionFactory = metaData.getSessionFactoryBuilder().build();
+         }
+         return sessionFactory;
+      } catch (Throwable ex) {
+         throw new ExceptionInInitializerError(ex);
+      }
+   }
+ 
+   public static SessionFactory getSessionFactory() {
+      return sessionFactory;
+   }
+ 
+   public static void shutdown() {
+      getSessionFactory().close();
+   }
 }

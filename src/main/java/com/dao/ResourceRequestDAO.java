@@ -2,6 +2,8 @@ package com.dao;
 
 import java.util.List;
 
+import javax.persistence.NamedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -36,17 +38,22 @@ public class ResourceRequestDAO implements ResourceRequestInt {
 	}
 
 	@Override
-	public List<ResourceRequest> getRequestbyUser(int userid) {
+	public List<ResourceRequest> getRequestbyUser(String userid) {
 		Transaction tx = null;
 		List<ResourceRequest> reslist = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
+			
 			tx = session.beginTransaction();
-			Query q = session.createQuery("FROM RESOURCEREQUEST as r WHERE r.USER = :quserid ");
+			
+			
+			Query q = session.createQuery("FROM ResourceRequest WHERE user = :quserid ");
 			q.setParameter("quserid", userid);
-			reslist = q.list();
-			System.out.println(reslist);
+			reslist = q.getResultList();
+			
+			System.out.println(reslist.size());
+			
 			tx.commit();
 
 		} catch (Exception e) {
@@ -59,7 +66,7 @@ public class ResourceRequestDAO implements ResourceRequestInt {
 	}
 
 	@Override
-	public List<ResourceRequest> getRequestbyApprover(int approverid) {
+	public List<ResourceRequest> getRequestbyApprover(String approverid) {
 		Transaction tx = null;
 		List<ResourceRequest> reslist = null;
 
@@ -68,8 +75,7 @@ public class ResourceRequestDAO implements ResourceRequestInt {
 			tx = session.beginTransaction();
 			Query q = session.createQuery("FROM RESOURCEREQUEST as r WHERE r.USER = :qapproverid ");
 			q.setParameter("qapproverid", approverid);
-			reslist = q.list();
-			System.out.println(reslist);
+			reslist = q.getResultList();			
 			tx.commit();
 
 		} catch (Exception e) {
@@ -105,7 +111,7 @@ public class ResourceRequestDAO implements ResourceRequestInt {
 	}
 
 	@Override
-	public void addRequest(String reason, String status, User user, User approver, Resource resource) {
+	public void addRequest(String reason, String status, String user, String approver, Resource resource) {
 		Transaction tx = null;
 
 		ResourceRequest resreq = new ResourceRequest();
@@ -114,13 +120,13 @@ public class ResourceRequestDAO implements ResourceRequestInt {
 		resreq.setUser(user);
 		resreq.setApprover(approver);
 		resreq.setResource(resource);
-
+        System.out.println("loaded");
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
 			tx = session.beginTransaction();
 
 			session.save(resreq);
-
+	        System.out.println("saved");
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {

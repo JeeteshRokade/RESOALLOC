@@ -6,22 +6,45 @@ import javax.persistence.*;
 public class UserManager {
 
 	@Id
-	private int Id;
+	private String UserId;
 
-	private int UserId;
+	private String ManagerId;
+	
+	private String password;
 
-	private int ManagerId;
 
-	public int getId() {
-		return Id;
-	}
-
-	public int getUserId() {
+	public String getUserId() {
 		return UserId;
 	}
 
-	public int getManagerId() {
+	public void setUserId(String userId) {
+		UserId = userId;
+	}
+
+	public String getManagerId() {
 		return ManagerId;
 	}
+
+	public void setManagerId(String managerId) {
+		ManagerId = managerId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "UserManager [ UserId=" + UserId + ", ManagerId=" + ManagerId + ", password=" + password
+				+ "]";
+	}
+	
+	
+
+
 
 }

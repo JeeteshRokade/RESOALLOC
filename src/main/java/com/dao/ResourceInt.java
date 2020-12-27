@@ -12,7 +12,7 @@ public interface ResourceInt {
 
 	public abstract List<Resource> getAllUsers();
 
-	public abstract void addResource(ResourceDetails rd, User user);
+	public abstract Resource addResource(ResourceDetails rd, User user);
 
 	// public abstract void updateUser(int userid);
 	public abstract void deleteUser(int resourceid);

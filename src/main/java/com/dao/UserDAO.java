@@ -17,7 +17,7 @@ public class UserDAO implements UserInt {
 
 	@Override
 	// @Transactional
-	public User getUserbyId(int userid) {
+	public User getUserbyId(String userid) {
 
 		Transaction tx = null;
 		User user = null;
@@ -62,13 +62,15 @@ public class UserDAO implements UserInt {
 	}
 
 	@Override
-	public void addUser(UserDetails ud, String role, Resource resource) {
+	public User addUser(String userid, UserDetails ud, String role, Resource resource)
+	{
 		Transaction tx = null;
-
+		System.out.println("gdfgfdg1");
 		User user = new User();
+		user.setUserid(userid);
 		user.setUd(ud);
 		user.setRole(role);
-		user.setResource(resource);
+		user.setRes(resource);
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
@@ -77,12 +79,14 @@ public class UserDAO implements UserInt {
 			session.save(user);
 
 			tx.commit();
+
 		} catch (Exception e) {
 			if (tx != null) {
 				tx.rollback();
 			}
 		}
 
+		return user;
 	}
 
 //	@Override
@@ -92,7 +96,7 @@ public class UserDAO implements UserInt {
 //	}
 
 	@Override
-	public void deleteUser(int userid) {
+	public void deleteUser(String userid) {
 
 		Transaction tx = null;
 		UserDAO ud = new UserDAO();

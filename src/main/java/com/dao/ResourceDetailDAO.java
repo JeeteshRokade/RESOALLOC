@@ -6,7 +6,7 @@ import com.models.UserDetails;
 public class ResourceDetailDAO implements ResourceDetailsInt {
 
 	@Override
-	public ResourceDetails addUserDetails(String resourcetype, String resourcename) {
+	public ResourceDetails addResourceDetails(String resourcetype, String resourcename) {
 
 		ResourceDetails rd = new ResourceDetails();
 		rd.setResourcename(resourcename);
