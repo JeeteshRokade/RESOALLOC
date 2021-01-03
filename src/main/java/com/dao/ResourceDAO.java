@@ -37,7 +37,7 @@ public class ResourceDAO implements ResourceInt {
 	}
 
 	@Override
-	public List<Resource> getAllUsers() {
+	public List<Resource> getAllResources() {
 
 		Transaction tx = null;
 		List<Resource> resourcelist = null;
@@ -61,13 +61,13 @@ public class ResourceDAO implements ResourceInt {
 	}
 
 	@Override
-	public Resource addResource(ResourceDetails rd, User user) 
+	public Resource addResource(ResourceDetails rd) 
 	{
 		Transaction tx = null;
 
 		Resource resource = new Resource();
 		resource.setResourcedetails(rd);
-		resource.setUser(user);
+		
 		
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -88,10 +88,10 @@ public class ResourceDAO implements ResourceInt {
 	}
 
 	@Override
-	public void deleteUser(int resourceid) {
+	public void deleteResource(int resourceid) {
 		Transaction tx = null;
-		ResourceDAO ud = new ResourceDAO();
-		Resource resource = ud.getResourcebyId(resourceid);
+		ResourceDAO rd = new ResourceDAO();
+		Resource resource = rd.getResourcebyId(resourceid);
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
@@ -107,5 +107,10 @@ public class ResourceDAO implements ResourceInt {
 		}
 
 	}
+
+	
+
+	
+	
 
 }

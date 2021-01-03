@@ -27,7 +27,7 @@ import com.util.HibernateUtil;
 @RequestMapping(value = "/registration")
 public class RegistrationController {
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView registration(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView registrationget(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("registration");
@@ -37,7 +37,7 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView registration(@RequestParam("userid") String userid, @RequestParam("fname") String fname,
+	public ModelAndView registrationpost(@RequestParam("userid") String userid, @RequestParam("fname") String fname,
 			@RequestParam("mname") String mname, @RequestParam("lname") String lname,
 			@RequestParam("country") String country, @RequestParam("city") String city,
 			@RequestParam("managerid") String managerid, @RequestParam("role") String role,
@@ -55,58 +55,20 @@ public class RegistrationController {
 			return mv;
 		} else {
 
-////		System.out.println(fname + lname + country + city + mname + role);
-////
 			UserDetailsDAO udd = new UserDetailsDAO();
-			UserDetails ud = udd.addUserDetails(fname, mname, lname, country, city);
-//		//System.out.println(ud);
-//			ResourceDetailDAO rdd = new ResourceDetailDAO();
-//			ResourceDetails rd = rdd.addResourceDetails("laptop", "Acer");
-//
-//			Resource resource = new Resource();
-//			resource.setResourcedetails(rd);
-
-//		ResourceDAO rdao = new ResourceDAO();
-//		rdao.addResource(rd,user);
+			UserDetails ud = udd.addUserDetails(fname, mname, lname, country, city);	
 
 			UserDAO udao = new UserDAO();
 			User user = udao.addUser(userid, ud, role, null);
 
-//	    
-//	    //System.out.println(resource);
-
-			// resource.setUser(user);
-
 			UserManagerDAO umd = new UserManagerDAO();
 			umd.addUserManager(userid, managerid, password);
 
-//		Transaction tx = null;
-//		System.out.println("gdfgfdg1");
-//		User user = new User();
-//		user.setUserid(userid);
-//		user.setUd(ud);
-//		user.setRole(role);
-//		user.setResource(resource);
-//		System.out.println("gdfgfdg2");
-//		try (Session session1 = HibernateUtil.getSessionFactory().openSession()) {
-//
-//			tx = session1.beginTransaction();
-//
-//			session1.save(user);
-//
-//			tx.commit();
-//
-//		} catch (Exception e) {
-//			if (tx != null) {
-//				tx.rollback();
-//			}
-//		}
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("login");
 
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login");
-
-		return mv;
-		//return "redirect:/login.do";
+			return mv;
+			// return "redirect:/login.do";
 		}
 
 	}

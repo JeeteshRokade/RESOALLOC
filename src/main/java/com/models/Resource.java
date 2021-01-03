@@ -11,11 +11,8 @@ public class Resource {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int resourceid;
 
+	@Column
 	private ResourceDetails resourcedetails;
-    
-	
-	@OneToOne(cascade = CascadeType.ALL)
-    private User useri;
 
 	public int getResourceid() {
 		return resourceid;
@@ -33,20 +30,11 @@ public class Resource {
 		this.resourcedetails = resourcedetails;
 	}
 
-	//@OneToOne
-	public User getUser() {
-		return useri;
-	}
-
-	public void setUser(User user) {
-		this.useri = useri;
-	}
-
 	@Override
 	public String toString() {
-		return "Resource [resourceid=" + resourceid + ", resourcedetails=" + resourcedetails + ", useri=" + useri + "]";
+		return "Resource [resourceid=" + resourceid + ", resourcedetails=" + resourcedetails + "]";
 	}
-	
-	
+
+
 
 }

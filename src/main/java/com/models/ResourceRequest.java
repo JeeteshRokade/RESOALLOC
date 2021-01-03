@@ -1,5 +1,6 @@
 package com.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,12 +18,11 @@ public class ResourceRequest {
 
 	private String status; // New,Pending,Approved
 
-
 	private String user;
 
 	private String approver;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Resource resource;
 
 	public int getRequestid() {
@@ -40,9 +40,6 @@ public class ResourceRequest {
 	public void setRequestreason(String requestreason) {
 		this.requestreason = requestreason;
 	}
-
-	
-
 
 	public String getStatus() {
 		return status;
@@ -81,7 +78,5 @@ public class ResourceRequest {
 		return "ResourceRequest [requestid=" + requestid + ", requestreason=" + requestreason + ", status=" + status
 				+ ", user=" + user + ", approver=" + approver + ", resource=" + resource + "]";
 	}
-
-	
 
 }

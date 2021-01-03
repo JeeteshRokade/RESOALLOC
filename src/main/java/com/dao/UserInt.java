@@ -16,5 +16,7 @@ public interface UserInt {
 
 	// public abstract void updateUser(int userid);
 	public abstract void deleteUser(String userid);
+	
+	public abstract void updateResource(String userid , int resourceid);
 
 }

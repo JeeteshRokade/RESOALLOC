@@ -10,11 +10,11 @@ public interface ResourceInt {
 
 	public abstract Resource getResourcebyId(int resourceid);
 
-	public abstract List<Resource> getAllUsers();
+	public abstract List<Resource> getAllResources();
 
-	public abstract Resource addResource(ResourceDetails rd, User user);
+	public abstract Resource addResource(ResourceDetails rd);
 
 	// public abstract void updateUser(int userid);
-	public abstract void deleteUser(int resourceid);
-
+	public abstract void deleteResource(int resourceid);
+	
 }

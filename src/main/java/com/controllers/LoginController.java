@@ -16,12 +16,12 @@ import com.dao.UserManagerDAO;
 import com.models.User;
 
 @Controller
-//@SessionAttributes("username")
+
 @RequestMapping(value = "/login")
 public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView registration(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView loginget(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
 		if (session.getAttribute("logged_in") != null) {
 			ModelAndView mv = new ModelAndView();
@@ -31,7 +31,7 @@ public class LoginController {
 
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("login");
-			
+
 			mv.addObject("badcred", "");
 
 			return mv;
@@ -39,7 +39,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam("userid") String  userid, @RequestParam("pass") String password,
+	public ModelAndView loginpost(@RequestParam("userid") String userid, @RequestParam("pass") String password,
 			HttpServletResponse response, HttpSession session) {
 
 //		UserDAO userdao =new UserDAO();
@@ -47,16 +47,16 @@ public class LoginController {
 //		System.out.println(user);
 
 		UserManagerDAO umd = new UserManagerDAO();
-		System.out.println("reached");
+
 		boolean userpresent = umd.getuserpass(userid, password);
-		System.out.println("reached1");
+
 		if (userpresent == true) {
 			session.setAttribute("userid", userid);
 			session.setAttribute("logged_in", "yes");
-			
+
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("home");
-			
+
 			return mv;
 		} else {
 			ModelAndView mv = new ModelAndView();
@@ -64,8 +64,6 @@ public class LoginController {
 			mv.addObject("badcred", "Enter valid credentials");
 			return mv;
 		}
-
-		
 
 	}
 

@@ -21,5 +21,7 @@ public interface ResourceRequestInt {
 
 	// public abstract void updateUser(int userid);
 	public abstract void deleteRequest(int requestid);
+	
+	public abstract void updaterequeststatus(int requestid, String status);
 
 }

@@ -1,31 +1,28 @@
 package com.models;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.NotFound;
-
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
-	
-	
-    @Id
+
+	@Id
 	private String userid;
-	
-    @Column
+
+	@Column
 	private UserDetails ud;
-	
-    @Column
+
+	@Column
 	private String role;
-    
-    @OneToOne(mappedBy = "useri",fetch = FetchType.EAGER)
-    @NotFound
-    private Resource res;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Resource> res;
 
 	public String getUserid() {
 		return userid;
@@ -51,21 +48,20 @@ public class User {
 		this.role = role;
 	}
 
-	public Resource getRes() {
+	public List<Resource> getRes() {
 		return res;
 	}
 
-	public void setRes(Resource res) {
+	public void setRes(List<Resource> res) {
 		this.res = res;
 	}
 
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", ud=" + ud + ", role=" + role + ", res=" + res + "]";
-	}
+	} 
 	
 	
-	
-	
+
 	
 }

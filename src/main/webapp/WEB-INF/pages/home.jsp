@@ -25,7 +25,7 @@
 </br>
 <a href="viewreq">View All your Requests</a>
 </br>
-<a href="logout">Approve Requests</a>
+<a href="approvereq">Approve Requests</a>
 
 </body>
 </html>

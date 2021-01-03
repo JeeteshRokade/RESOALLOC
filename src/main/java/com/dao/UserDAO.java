@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -25,12 +26,13 @@ public class UserDAO implements UserInt {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
 			tx = session.beginTransaction();
-			user = session.get(User.class, userid);
-			System.out.println(user);
+			user =(User) session.get(User.class, userid);
+			
 			tx.commit();
 
 		} catch (Exception e) {
 			if (tx != null) {
+				e.printStackTrace();
 				tx.rollback();
 			}
 		}
@@ -70,7 +72,7 @@ public class UserDAO implements UserInt {
 		user.setUserid(userid);
 		user.setUd(ud);
 		user.setRole(role);
-		user.setRes(resource);
+		//user.getRes().add(resource);
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
@@ -115,6 +117,33 @@ public class UserDAO implements UserInt {
 			}
 		}
 
+	}
+	
+	@Override
+	public void updateResource(String userid, int resourceid) {
+		Transaction tx = null;
+		ResourceDAO rd = new ResourceDAO();
+		Resource resource = rd.getResourcebyId(resourceid);
+		UserDAO ud = new UserDAO();
+		User user = ud.getUserbyId(userid);
+
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+			tx = session.beginTransaction();
+		
+			List<Resource> reslist = new ArrayList<Resource>();
+			reslist.add(resource);
+			user.setRes(reslist);
+			session.update(user);
+
+			tx.commit();
+
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+		}
+		
 	}
 
 }

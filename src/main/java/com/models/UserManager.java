@@ -9,9 +9,8 @@ public class UserManager {
 	private String UserId;
 
 	private String ManagerId;
-	
-	private String password;
 
+	private String password;
 
 	public String getUserId() {
 		return UserId;
@@ -39,12 +38,7 @@ public class UserManager {
 
 	@Override
 	public String toString() {
-		return "UserManager [ UserId=" + UserId + ", ManagerId=" + ManagerId + ", password=" + password
-				+ "]";
+		return "UserManager [ UserId=" + UserId + ", ManagerId=" + ManagerId + ", password=" + password + "]";
 	}
-	
-	
-
-
 
 }
